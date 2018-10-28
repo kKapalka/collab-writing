@@ -31,4 +31,7 @@ public class Story {
     @OneToMany(mappedBy = "story")
     private List<Comment> comments;
 
+    @OneToMany(mappedBy = "story")
+    private List<Note> notes;
+
 }

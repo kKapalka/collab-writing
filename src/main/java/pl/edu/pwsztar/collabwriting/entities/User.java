@@ -27,7 +27,7 @@ public class User {
     @Column(name="ACTIVE")
     private Boolean active;
 
-    @OneToMany
+    @ManyToMany
     @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "USER_ID"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
     private List<Role> roles;
 

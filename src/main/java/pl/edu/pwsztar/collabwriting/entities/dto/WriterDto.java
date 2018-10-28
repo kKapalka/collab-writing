@@ -15,7 +15,7 @@ public class WriterDto {
 
     private Long storyId;
     private String storyTitle;
-    
+
     private List<Long> roleIdList;
 
     public WriterDto(Writer writer){
