@@ -1,8 +1,9 @@
 package pl.edu.pwsztar.collabwriting.entities.dto;
 
-import pl.edu.pwsztar.collabwriting.entities.Entry;
+import lombok.Data;
 import pl.edu.pwsztar.collabwriting.entities.Note;
 
+@Data
 public class NoteDto {
 
     private Long noteId;

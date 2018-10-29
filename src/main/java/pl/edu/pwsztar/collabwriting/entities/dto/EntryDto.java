@@ -1,7 +1,9 @@
 package pl.edu.pwsztar.collabwriting.entities.dto;
 
+import lombok.Data;
 import pl.edu.pwsztar.collabwriting.entities.Entry;
 
+@Data
 public class EntryDto {
 
     private Long entryId;

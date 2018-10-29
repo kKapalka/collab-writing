@@ -1,10 +1,12 @@
 package pl.edu.pwsztar.collabwriting.entities.dto;
 
+import lombok.Data;
 import pl.edu.pwsztar.collabwriting.entities.Writer;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Data
 public class WriterDto {
 
     private Long writerId;

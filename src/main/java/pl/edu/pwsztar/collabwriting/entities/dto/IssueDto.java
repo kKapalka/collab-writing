@@ -1,7 +1,9 @@
 package pl.edu.pwsztar.collabwriting.entities.dto;
 
+import lombok.Data;
 import pl.edu.pwsztar.collabwriting.entities.Issue;
 
+@Data
 public class IssueDto {
 
     private Long issueId;

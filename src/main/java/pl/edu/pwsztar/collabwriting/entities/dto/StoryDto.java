@@ -1,10 +1,12 @@
 package pl.edu.pwsztar.collabwriting.entities.dto;
 
+import lombok.Data;
 import pl.edu.pwsztar.collabwriting.entities.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Data
 public class StoryDto {
 
     public Long storyId;
