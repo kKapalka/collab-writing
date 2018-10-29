@@ -1,6 +1,5 @@
 package pl.edu.pwsztar.collabwriting.entities.dto;
 
-import pl.edu.pwsztar.collabwriting.entities.Role;
 import pl.edu.pwsztar.collabwriting.entities.Writer;
 
 import java.util.List;
@@ -16,7 +15,7 @@ public class WriterDto {
     private Long storyId;
     private String storyTitle;
 
-    private List<Long> roleIdList;
+    private List<String> writerRoleList;
 
     public WriterDto(Writer writer){
         this.writerId=writer.getWriterId();
@@ -24,6 +23,6 @@ public class WriterDto {
         this.userName=writer.getUser().getLogin();
         this.storyId=writer.getStory().getStoryId();
         this.storyTitle=writer.getStory().getTitle();
-        this.roleIdList=writer.getRoles().stream().map(Role::getRoleId).collect(Collectors.toList());
+        this.writerRoleList=writer.getWriterRoles().stream().map(Enum::name).collect(Collectors.toList());
     }
 }

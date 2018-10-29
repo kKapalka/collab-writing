@@ -27,9 +27,10 @@ public class User {
     @Column(name="ACTIVE")
     private Boolean active;
 
-    @ManyToMany
-    @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "USER_ID"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
-    private List<Role> roles;
+    @ElementCollection
+    @Column(name="USER_ROLE")
+    @Enumerated(EnumType.STRING)
+    private List<UserRole> roles;
 
     public User(User user){
         this.login=user.getLogin();

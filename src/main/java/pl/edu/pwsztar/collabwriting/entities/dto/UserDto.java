@@ -8,5 +8,5 @@ public class UserDto {
     private String login;
     private String password;
     private String email;
-    private List<RoleDto> roleDtoList;
+    private List<String> userRoleList;
 }
