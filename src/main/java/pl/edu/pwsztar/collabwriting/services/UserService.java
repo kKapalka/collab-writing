@@ -1,6 +1,7 @@
 package pl.edu.pwsztar.collabwriting.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,8 +12,10 @@ import pl.edu.pwsztar.collabwriting.entities.dto.UserDto;
 import pl.edu.pwsztar.collabwriting.model.CustomUserDetails;
 import pl.edu.pwsztar.collabwriting.repositories.UserRepository;
 
+import javax.management.relation.Role;
 import javax.persistence.EntityNotFoundException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,7 +28,9 @@ public class UserService implements UserDetailsService {
         User user = updateUser(dto);
         return new UserDto(userRepository.save(user));
     }
-
+    public UserDto getCurrentUser(){
+        return new UserDto((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+    }
     private User updateUser(UserDto dto){
         User user;
         if(dto.getUserId()!=null){
@@ -37,7 +42,11 @@ public class UserService implements UserDetailsService {
         user.setPassword(dto.getPassword());
         user.setEmail(dto.getEmail());
         if(dto.getUserRoleList()!=null){
-            user.setRoles(dto.getUserRoleList().stream().map(UserRole::valueOf).collect(Collectors.toList()));
+            List<UserRole> roleList = dto.getUserRoleList().stream().map(UserRole::valueOf).collect(Collectors.toList());
+            if(!dto.getUserRoleList().contains("USER")){
+                roleList.add(UserRole.USER);
+            }
+            user.setRoles(roleList);
         } else{
             user.setRoles(Arrays.asList(UserRole.USER));
         }
@@ -47,8 +56,6 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println(userRepository.findAll());
-        System.out.println(userRepository.findByLogin(username));
         return new CustomUserDetails(userRepository.findByLogin(username)
                 .orElseThrow(()->new UsernameNotFoundException("User not found.")));
     }

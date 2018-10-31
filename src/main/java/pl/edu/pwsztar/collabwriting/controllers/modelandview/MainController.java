@@ -1,11 +1,15 @@
-package pl.edu.pwsztar.collabwriting.controllers;
+package pl.edu.pwsztar.collabwriting.controllers.modelandview;
 
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
+import pl.edu.pwsztar.collabwriting.controllers.modelandview.helperclasses.PortalController;
+import pl.edu.pwsztar.collabwriting.entities.User;
 
 @Controller
-public class MainController {
+public class MainController extends PortalController {
 
     @GetMapping({"/index","/"})
     public String index() {
@@ -14,8 +18,8 @@ public class MainController {
 
     @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping("/portal/admin")
-    public String securedHello() {
-        return "Secured Hello";
+    public ModelAndView securedHello(){
+        return userPage("Secure Hello");
     }
 
     @PreAuthorize("hasAnyRole('USER')")
