@@ -1,12 +1,14 @@
 package pl.edu.pwsztar.collabwriting.entities;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Data
+@NoArgsConstructor
 @Table(name="WRITERS")
 public class Writer {
 
@@ -23,12 +25,9 @@ public class Writer {
     @JoinColumn(name="STORY_ID")
     private Story story;
 
-    @ManyToMany
-    @JoinTable(
-            name = "WRITER_ROLE",
-            joinColumns = { @JoinColumn(name = "WRITER_ID") },
-            inverseJoinColumns = { @JoinColumn(name = "ROLE_ID") }
-    )
-    private List<Role> roles;
+    @ElementCollection
+    @Column(name="WRITER_ROLE")
+    @Enumerated(EnumType.STRING)
+    private List<WriterRole> writerRoles;
 
 }

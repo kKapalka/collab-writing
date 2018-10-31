@@ -1,7 +1,9 @@
 package pl.edu.pwsztar.collabwriting.entities.dto;
 
+import lombok.Data;
 import pl.edu.pwsztar.collabwriting.entities.Comment;
 
+@Data
 public class CommentDto {
 
     private Long commentId;

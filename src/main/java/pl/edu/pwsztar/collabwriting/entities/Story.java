@@ -2,12 +2,14 @@ package pl.edu.pwsztar.collabwriting.entities;
 
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Data
+@NoArgsConstructor
 @Table(name="STORIES")
 public class Story {
 

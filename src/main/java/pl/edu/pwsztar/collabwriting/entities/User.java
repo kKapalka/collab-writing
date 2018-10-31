@@ -1,6 +1,7 @@
 package pl.edu.pwsztar.collabwriting.entities;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
@@ -27,9 +28,11 @@ public class User {
     @Column(name="ACTIVE")
     private Boolean active;
 
-    @ManyToMany
-    @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "USER_ID"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
-    private List<Role> roles;
+    @ElementCollection(fetch=FetchType.EAGER)
+    @Column(name="USER_ROLE")
+    @Enumerated(EnumType.STRING)
+
+    private List<UserRole> roles;
 
     public User(User user){
         this.login=user.getLogin();
@@ -38,5 +41,8 @@ public class User {
         this.active=user.getActive();
         this.roles=user.getRoles();
         this.userId=user.getUserId();
+    }
+    public User(){
+
     }
 }
