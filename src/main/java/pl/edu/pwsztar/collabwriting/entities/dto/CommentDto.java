@@ -16,10 +16,10 @@ public class CommentDto {
 
     public CommentDto(Comment comment){
         this.commentId=comment.getCommentId();
-        this.authorId=comment.getAuthor().getUserId();
-        this.authorName=comment.getAuthor().getLogin();
-        this.storyId=comment.getStory().getStoryId();
-        this.storyTitle=comment.getStory().getTitle();
+        this.authorId=comment.getAuthor()!=null ? comment.getAuthor().getUserId() : null;
+        this.authorName=comment.getAuthor()!=null ? comment.getAuthor().getLogin() : null;
+        this.storyId=comment.getStory()!=null ? comment.getStory().getStoryId() : null;
+        this.storyTitle=comment.getStory()!=null ? comment.getStory().getTitle() : null;
         this.commentText=comment.getCommentText();
         this.commentTime=comment.getCommentTime().toString();
     }

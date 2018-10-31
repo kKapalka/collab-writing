@@ -9,7 +9,7 @@ import pl.edu.pwsztar.collabwriting.entities.dto.NoteDto;
 import pl.edu.pwsztar.collabwriting.services.NoteService;
 
 @RestController
-@RequestMapping("/story")
+@RequestMapping("/note")
 public class NoteController {
 
     @Autowired
