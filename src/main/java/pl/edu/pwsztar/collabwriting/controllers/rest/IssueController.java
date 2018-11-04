@@ -1,14 +1,13 @@
 package pl.edu.pwsztar.collabwriting.controllers.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.edu.pwsztar.collabwriting.entities.Issue;
 import pl.edu.pwsztar.collabwriting.entities.IssueStatus;
 import pl.edu.pwsztar.collabwriting.entities.dto.IssueDto;
 import pl.edu.pwsztar.collabwriting.services.IssueService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/issue")
@@ -21,4 +20,10 @@ public class IssueController {
     public IssueDto save(@RequestBody IssueDto dto){
         return issueService.save(dto);
     }
+
+    @GetMapping("/all")
+    public List<IssueDto> getAll(){
+        return issueService.getAllIssues();
+    }
+
 }

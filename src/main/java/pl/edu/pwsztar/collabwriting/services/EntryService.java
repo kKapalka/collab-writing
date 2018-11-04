@@ -9,6 +9,9 @@ import pl.edu.pwsztar.collabwriting.repositories.EntryRepository;
 import pl.edu.pwsztar.collabwriting.repositories.StoryRepository;
 import pl.edu.pwsztar.collabwriting.repositories.UserRepository;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class EntryService {
 
@@ -35,4 +38,9 @@ public class EntryService {
         entry.setStory(storyRepository.findById(dto.getStoryId()).get());
         return entry;
     }
+
+    public List<EntryDto> getAllEntries(){
+        return entryRepository.findAll().stream().map(EntryDto::new).collect(Collectors.toList());
+    }
+
 }

@@ -6,6 +6,9 @@ import pl.edu.pwsztar.collabwriting.entities.Story;
 import pl.edu.pwsztar.collabwriting.entities.dto.StoryDto;
 import pl.edu.pwsztar.collabwriting.repositories.StoryRepository;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class StoryService {
 
@@ -23,6 +26,10 @@ public class StoryService {
         }
         story.setTitle(dto.getTitle());
         return story;
+    }
+
+    public List<StoryDto> getAllStories(){
+        return storyRepository.findAll().stream().map(StoryDto::new).collect(Collectors.toList());
     }
 
 }

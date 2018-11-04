@@ -9,6 +9,9 @@ import pl.edu.pwsztar.collabwriting.repositories.IssueRepository;
 import pl.edu.pwsztar.collabwriting.repositories.StoryRepository;
 import pl.edu.pwsztar.collabwriting.repositories.UserRepository;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class IssueService {
 
@@ -38,6 +41,10 @@ public class IssueService {
         issue.setAssigned(userRepository.findById(dto.getAssignedAuthorId()).get());
         issue.setStory(storyRepository.findById(dto.getStoryId()).get());
         return issue;
+    }
+
+    public List<IssueDto> getAllIssues(){
+        return issueRepository.findAll().stream().map(IssueDto::new).collect(Collectors.toList());
     }
 
 }

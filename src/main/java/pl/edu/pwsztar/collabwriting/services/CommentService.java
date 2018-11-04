@@ -9,6 +9,8 @@ import pl.edu.pwsztar.collabwriting.repositories.StoryRepository;
 import pl.edu.pwsztar.collabwriting.repositories.UserRepository;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CommentService {
@@ -36,6 +38,10 @@ public class CommentService {
         comment.setAuthor(userRepository.findById(dto.getAuthorId()).get());
         comment.setStory(storyRepository.findById(dto.getStoryId()).get());
         return comment;
+    }
+
+    public List<CommentDto> getAllComments(){
+        return commentRepository.findAll().stream().map(CommentDto::new).collect(Collectors.toList());
     }
 
 }

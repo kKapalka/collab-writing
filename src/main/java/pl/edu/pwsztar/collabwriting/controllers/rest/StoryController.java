@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import pl.edu.pwsztar.collabwriting.entities.dto.StoryDto;
 import pl.edu.pwsztar.collabwriting.services.StoryService;
 
+import java.util.List;
+
 @RequestMapping("/story")
 @RestController
 public class StoryController {
@@ -17,4 +19,10 @@ public class StoryController {
     public StoryDto save(@RequestBody StoryDto dto){
         return storyService.save(dto);
     }
+
+    @GetMapping("/all")
+    public List<StoryDto> getAll(){
+        return storyService.getAllStories();
+    }
+
 }

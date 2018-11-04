@@ -9,6 +9,9 @@ import pl.edu.pwsztar.collabwriting.repositories.StoryRepository;
 import pl.edu.pwsztar.collabwriting.repositories.UserRepository;
 import pl.edu.pwsztar.collabwriting.repositories.WriterRepository;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class NoteService {
 
@@ -36,4 +39,9 @@ public class NoteService {
         note.setStory(storyRepository.findById(dto.getStoryId()).get());
         return note;
     }
+
+    public List<NoteDto> getALlNotes(){
+        return noteRepository.findAll().stream().map(NoteDto::new).collect(Collectors.toList());
+    }
+
 }
