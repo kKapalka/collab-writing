@@ -3,6 +3,7 @@ package pl.edu.pwsztar.collabwriting.entities.dto;
 import lombok.Data;
 import pl.edu.pwsztar.collabwriting.entities.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,11 +21,21 @@ public class StoryDto {
     public StoryDto(Story story){
         this.storyId=story.getStoryId();
         this.title=story.getTitle();
-        this.authorIdList=story.getWriters().stream().map(Writer::getWriterId).collect(Collectors.toList());
-        this.issueIdList=story.getIssues().stream().map(Issue::getIssueId).collect(Collectors.toList());
-        this.commentIdList=story.getComments().stream().map(Comment::getCommentId).collect(Collectors.toList());
-        this.entryIdList=story.getEntries().stream().map(Entry::getEntryId).collect(Collectors.toList());
-        this.noteIdList=story.getNotes().stream().map(Note::getNoteId).collect(Collectors.toList());
+        this.authorIdList=story.getWriters()!=null ?
+                story.getWriters().stream().map(Writer::getWriterId).collect(Collectors.toList())
+                : new ArrayList<>();
+        this.issueIdList=story.getIssues()!=null?
+                story.getIssues().stream().map(Issue::getIssueId).collect(Collectors.toList())
+                : new ArrayList<>();
+        this.commentIdList=story.getComments()!=null?
+                story.getComments().stream().map(Comment::getCommentId).collect(Collectors.toList())
+                : new ArrayList<>();
+        this.entryIdList=story.getEntries()!=null?
+                story.getEntries().stream().map(Entry::getEntryId).collect(Collectors.toList())
+                : new ArrayList<>();
+        this.noteIdList=story.getNotes()!=null?
+                story.getNotes().stream().map(Note::getNoteId).collect(Collectors.toList())
+                : new ArrayList<>();
     }
 
 }
