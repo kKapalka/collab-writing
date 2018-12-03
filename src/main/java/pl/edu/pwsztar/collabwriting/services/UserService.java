@@ -1,62 +1,51 @@
 package pl.edu.pwsztar.collabwriting.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import pl.edu.pwsztar.collabwriting.entities.User;
-import pl.edu.pwsztar.collabwriting.entities.UserRole;
 import pl.edu.pwsztar.collabwriting.entities.dto.UserDto;
-import pl.edu.pwsztar.collabwriting.model.CustomUserDetails;
+import pl.edu.pwsztar.collabwriting.exceptions.EmailExistsException;
 import pl.edu.pwsztar.collabwriting.repositories.UserRepository;
+import pl.edu.pwsztar.collabwriting.services.interfaces.IUserService;
 
-import javax.management.relation.Role;
 import javax.persistence.EntityNotFoundException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import javax.transaction.Transactional;
 
 @Service
-public class UserService implements UserDetailsService {
+@Transactional
+public class UserService implements IUserService {
 
     @Autowired
     private UserRepository userRepository;
 
-    public UserDto save(UserDto dto){
-        User user = updateUser(dto);
-        return new UserDto(userRepository.save(user));
-    }
-    public UserDto getCurrentUser(){
-        return new UserDto((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-    }
-    private User updateUser(UserDto dto){
-        User user;
-        if(dto.getUserId()!=null){
-            user=userRepository.findById(dto.getUserId()).orElseThrow(EntityNotFoundException::new);
-        } else{
-            user=new User();
-        }
-        user.setLogin(dto.getLogin());
-        user.setPassword(dto.getPassword());
-        user.setEmail(dto.getEmail());
-        if(dto.getUserRoleList()!=null){
-            List<UserRole> roleList = dto.getUserRoleList().stream().map(UserRole::valueOf).collect(Collectors.toList());
-            if(!dto.getUserRoleList().contains("USER")){
-                roleList.add(UserRole.USER);
-            }
-            user.setRoles(roleList);
-        } else{
-            user.setRoles(Arrays.asList(UserRole.USER));
-        }
-
-        return user;
-    }
-
+    @Transactional
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return new CustomUserDetails(userRepository.findByLogin(username)
-                .orElseThrow(()->new UsernameNotFoundException("User not found.")));
+    public User registerNewUserAccount(UserDto accountDto)
+            throws EmailExistsException {
+
+        if (emailExist(accountDto.getEmail())) {
+            throw new EmailExistsException(
+                    "There is an account with that email address:"  + accountDto.getEmail());
+        }
+        User user = new User();
+        user.setLogin(accountDto.getLogin());
+        user.setPassword(accountDto.getPassword());
+        user.setEmail(accountDto.getEmail());
+        return userRepository.save(user);
     }
+    private boolean emailExist(String email) {
+        User user = userRepository.findByEmail(email);
+        if (user != null) {
+            return true;
+        }
+        return false;
+    }
+    public User getUserById(Long id){
+        return userRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+    }
+
+    public User getUserByLogin(String login){
+        return userRepository.findByLogin(login).orElseThrow(EntityNotFoundException::new);
+    }
+
 }
