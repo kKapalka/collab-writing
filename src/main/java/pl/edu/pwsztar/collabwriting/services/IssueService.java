@@ -3,7 +3,7 @@ package pl.edu.pwsztar.collabwriting.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.edu.pwsztar.collabwriting.entities.Issue;
-import pl.edu.pwsztar.collabwriting.entities.IssueStatus;
+import pl.edu.pwsztar.collabwriting.entities.enums.IssueStatus;
 import pl.edu.pwsztar.collabwriting.entities.dto.IssueDto;
 import pl.edu.pwsztar.collabwriting.repositories.IssueRepository;
 import pl.edu.pwsztar.collabwriting.repositories.StoryRepository;

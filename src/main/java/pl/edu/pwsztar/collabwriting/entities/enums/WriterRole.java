@@ -1,4 +1,4 @@
-package pl.edu.pwsztar.collabwriting.entities;
+package pl.edu.pwsztar.collabwriting.entities.enums;
 
 public enum WriterRole {
     WRITER,

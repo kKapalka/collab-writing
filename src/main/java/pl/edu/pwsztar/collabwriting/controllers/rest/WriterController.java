@@ -20,6 +20,6 @@ public class WriterController {
     }
 
     @GetMapping("/all")
-    public List<WriterDto> getAll(){ return writerService.getAllStories();}
+    public List<WriterDto> getAll(){ return writerService.getAllWriters();}
 
 }
