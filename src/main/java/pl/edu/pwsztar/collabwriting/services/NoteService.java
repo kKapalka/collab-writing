@@ -35,8 +35,8 @@ public class NoteService {
             note = noteRepository.findById(dto.getNoteId()).get();
         }
         note.setNoteData(dto.getNoteData());
-        note.setAuthor(userRepository.findById(dto.getAuthorId()).get());
-        note.setStory(storyRepository.findById(dto.getStoryId()).get());
+        note.setAuthor(userRepository.findByLogin(dto.getAuthorName()).get());
+        note.setStory(storyRepository.getStoryByTitle(dto.getStoryTitle()).get());
         return note;
     }
 

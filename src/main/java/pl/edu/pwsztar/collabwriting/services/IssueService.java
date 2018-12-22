@@ -37,9 +37,9 @@ public class IssueService {
         issue.setIssueStatus(IssueStatus.valueOf(dto.getIssueStatus()));
         issue.setDescription(dto.getDescription());
         issue.setTitle(dto.getIssueTitle());
-        issue.setAuthor(userRepository.findById(dto.getAuthorId()).get());
-        issue.setAssigned(userRepository.findById(dto.getAssignedAuthorId()).get());
-        issue.setStory(storyRepository.findById(dto.getStoryId()).get());
+        issue.setAuthor(userRepository.findByLogin(dto.getAuthorName()).get());
+        issue.setAssigned(userRepository.findByLogin(dto.getAssignedAuthorName()).get());
+        issue.setStory(storyRepository.getStoryByTitle(dto.getStoryTitle()).get());
         return issue;
     }
 

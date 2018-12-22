@@ -35,8 +35,8 @@ public class CommentService {
         }
         comment.setCommentText(dto.getCommentText());
         comment.setCommentTime(dto.getCommentTime()!=null?LocalDateTime.parse(dto.getCommentTime()):LocalDateTime.now());
-        comment.setAuthor(userRepository.findById(dto.getAuthorId()).get());
-        comment.setStory(storyRepository.findById(dto.getStoryId()).get());
+        comment.setAuthor(userRepository.findByLogin(dto.getAuthorName()).get());
+        comment.setStory(storyRepository.getStoryByTitle(dto.getStoryTitle()).get());
         return comment;
     }
 

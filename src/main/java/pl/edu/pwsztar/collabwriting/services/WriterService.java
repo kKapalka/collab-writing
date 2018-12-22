@@ -34,8 +34,8 @@ public class WriterService {
             writer = writerRepository.findById(dto.getWriterId()).get();
         }
         writer.setWriterRoles(dto.getWriterRoleList().stream().map(WriterRole::valueOf).collect(Collectors.toList()));
-        writer.setStory(storyRepository.findById(dto.getStoryId()).get());
-        writer.setUser(userRepository.findById(dto.getUserId()).get());
+        writer.setStory(storyRepository.getStoryByTitle(dto.getStoryTitle()).get());
+        writer.setUser(userRepository.findByLogin(dto.getUserName()).get());
         return writer;
     }
 

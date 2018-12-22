@@ -34,8 +34,8 @@ public class EntryService {
             entry = entryRepository.findById(dto.getEntryId()).get();
         }
         entry.setEntryText(dto.getEntryText());
-        entry.setAuthor(userRepository.findById(dto.getAuthorId()).get());
-        entry.setStory(storyRepository.findById(dto.getStoryId()).get());
+        entry.setAuthor(userRepository.findByLogin(dto.getAuthorName()).get());
+        entry.setStory(storyRepository.getStoryByTitle(dto.getStoryTitle()).get());
         return entry;
     }
 
