@@ -8,6 +8,7 @@ import pl.edu.pwsztar.collabwriting.repositories.CommentRepository;
 import pl.edu.pwsztar.collabwriting.repositories.StoryRepository;
 import pl.edu.pwsztar.collabwriting.repositories.UserRepository;
 
+import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,5 +44,8 @@ public class CommentService {
     public List<CommentDto> getAllComments(){
         return commentRepository.findAll().stream().map(CommentDto::new).collect(Collectors.toList());
     }
-
+    public List<CommentDto> getByStoryId(Long id){
+        return commentRepository.getAllByStory(storyRepository.findById(id).orElseThrow(EntityNotFoundException::new))
+                .stream().map(CommentDto::new).collect(Collectors.toList());
+    }
 }

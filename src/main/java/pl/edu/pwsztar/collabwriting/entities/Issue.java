@@ -2,6 +2,8 @@ package pl.edu.pwsztar.collabwriting.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.edu.pwsztar.collabwriting.entities.base.StoryChildEntity;
+import pl.edu.pwsztar.collabwriting.entities.base.StoryContentEntity;
 import pl.edu.pwsztar.collabwriting.entities.enums.IssueStatus;
 
 import javax.persistence.*;
@@ -10,20 +12,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @Table(name="ISSUES")
-public class Issue {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="ISSUE_ID")
-    private Long issueId;
-
-    @ManyToOne
-    @JoinColumn(name="AUTHOR_ID")
-    private User author;
-
-    @ManyToOne
-    @JoinColumn(name="STORY_ID")
-    private Story story;
+public class Issue extends StoryContentEntity {
 
     @Column(name="TITLE")
     private String title;

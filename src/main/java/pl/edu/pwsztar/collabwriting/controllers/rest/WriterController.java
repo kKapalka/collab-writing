@@ -22,4 +22,8 @@ public class WriterController {
     @GetMapping("/all")
     public List<WriterDto> getAll(){ return writerService.getAllWriters();}
 
+    @GetMapping("/story/{id}")
+    public List<WriterDto> getByStoryId(@PathVariable Long id){
+        return writerService.getByStoryId(id);
+    }
 }

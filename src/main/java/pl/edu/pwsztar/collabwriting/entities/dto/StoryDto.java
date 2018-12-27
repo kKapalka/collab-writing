@@ -19,22 +19,22 @@ public class StoryDto {
     public List<Long> noteIdList;
 
     public StoryDto(Story story){
-        this.storyId=story.getStoryId();
+        this.storyId=story.getId();
         this.title=story.getTitle();
         this.authorIdList=story.getWriters()!=null ?
-                story.getWriters().stream().map(Writer::getWriterId).collect(Collectors.toList())
+                story.getWriters().stream().map(Writer::getId).collect(Collectors.toList())
                 : new ArrayList<>();
         this.issueIdList=story.getIssues()!=null?
-                story.getIssues().stream().map(Issue::getIssueId).collect(Collectors.toList())
+                story.getIssues().stream().map(Issue::getId).collect(Collectors.toList())
                 : new ArrayList<>();
         this.commentIdList=story.getComments()!=null?
-                story.getComments().stream().map(Comment::getCommentId).collect(Collectors.toList())
+                story.getComments().stream().map(Comment::getId).collect(Collectors.toList())
                 : new ArrayList<>();
         this.entryIdList=story.getEntries()!=null?
-                story.getEntries().stream().map(Entry::getEntryId).collect(Collectors.toList())
+                story.getEntries().stream().map(Entry::getId).collect(Collectors.toList())
                 : new ArrayList<>();
         this.noteIdList=story.getNotes()!=null?
-                story.getNotes().stream().map(Note::getNoteId).collect(Collectors.toList())
+                story.getNotes().stream().map(Note::getId).collect(Collectors.toList())
                 : new ArrayList<>();
     }
 

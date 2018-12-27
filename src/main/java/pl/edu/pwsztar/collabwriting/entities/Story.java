@@ -3,6 +3,7 @@ package pl.edu.pwsztar.collabwriting.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.edu.pwsztar.collabwriting.entities.base.BaseEntity;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,12 +12,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Table(name="STORIES")
-public class Story {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="STORY_ID")
-    private Long storyId;
+public class Story extends BaseEntity {
 
     @Column(name="TITLE")
     private String title;

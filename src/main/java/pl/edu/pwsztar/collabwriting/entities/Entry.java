@@ -3,6 +3,8 @@ package pl.edu.pwsztar.collabwriting.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.edu.pwsztar.collabwriting.entities.base.StoryChildEntity;
+import pl.edu.pwsztar.collabwriting.entities.base.StoryContentEntity;
 
 import javax.persistence.*;
 
@@ -10,20 +12,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @Table(name="ENTRIES")
-public class Entry {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="ENTRY_ID")
-    private Long entryId;
-
-    @ManyToOne
-    @JoinColumn(name="AUTHOR_ID")
-    private User author;
-
-    @ManyToOne
-    @JoinColumn(name="STORY_ID")
-    private Story story;
+public class Entry extends StoryContentEntity {
 
     @Column(name="ENTRY_TEXT")
     private String entryText;

@@ -26,7 +26,7 @@ public class UserDto {
     private List<String> userRoleList;
 
     public UserDto(User user){
-        this.userId=user.getUserId();
+        this.userId=user.getId();
         this.login=user.getLogin();
         this.password=user.getPassword();
         this.email=user.getEmail();

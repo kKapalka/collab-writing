@@ -24,4 +24,8 @@ public class IssueController {
         return issueService.getAllIssues();
     }
 
+    @GetMapping("/story/{id}")
+    public List<IssueDto> getByStoryId(@PathVariable Long id){
+        return issueService.getByStoryId(id);
+    }
 }

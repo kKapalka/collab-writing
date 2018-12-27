@@ -18,6 +18,7 @@ import pl.edu.pwsztar.collabwriting.messages.JwtResponse;
 import pl.edu.pwsztar.collabwriting.messages.ResponseMessage;
 import pl.edu.pwsztar.collabwriting.security.jwt.JwtProvider;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
 @RestController
@@ -69,6 +70,17 @@ public class AuthController {
         userRepository.save(user);
 
         return new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK);
+    }
+    @PostMapping("/update")
+    public ResponseEntity<?> updateUserData(@Valid @RequestBody UserDto modifiedUserData, @RequestHeader("token") String token) {
+        User user = userRepository.findByLogin(jwtProvider.getUserNameFromJwtToken(token)).orElseThrow(EntityNotFoundException::new);
+
+        user.setLogin(modifiedUserData.getLogin());
+        user.setEmail(modifiedUserData.getEmail());
+        user.setPassword(encoder.encode(modifiedUserData.getPassword()));
+        userRepository.save(user);
+
+        return new ResponseEntity<>(new ResponseMessage("User modified successfully!"), HttpStatus.OK);
     }
 
 }

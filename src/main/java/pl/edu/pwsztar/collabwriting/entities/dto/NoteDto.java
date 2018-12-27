@@ -12,7 +12,7 @@ public class NoteDto {
     private String noteData;
 
     public NoteDto(Note note){
-        this.noteId=note.getNoteId();
+        this.noteId=note.getId();
         this.authorName=note.getAuthor().getLogin();
         this.storyTitle=note.getStory().getTitle();
         this.noteData=note.getNoteData();

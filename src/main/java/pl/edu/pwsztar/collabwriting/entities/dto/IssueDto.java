@@ -15,7 +15,7 @@ public class IssueDto {
     private String assignedAuthorName;
 
     public IssueDto(Issue issue){
-        this.issueId=issue.getIssueId();
+        this.issueId=issue.getId();
         this.authorName=issue.getAuthor().getLogin();
         this.storyTitle=issue.getStory().getTitle();
         this.issueTitle=issue.getTitle();

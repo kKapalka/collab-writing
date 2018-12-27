@@ -9,6 +9,7 @@ import pl.edu.pwsztar.collabwriting.repositories.StoryRepository;
 import pl.edu.pwsztar.collabwriting.repositories.UserRepository;
 import pl.edu.pwsztar.collabwriting.repositories.WriterRepository;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,5 +43,8 @@ public class WriterService {
     public List<WriterDto> getAllWriters(){
         return writerRepository.findAll().stream().map(WriterDto::new).collect(Collectors.toList());
     }
-
+    public List<WriterDto> getByStoryId(Long id){
+        return writerRepository.getAllByStory(storyRepository.findById(id).orElseThrow(EntityNotFoundException::new))
+                .stream().map(WriterDto::new).collect(Collectors.toList());
+    }
 }

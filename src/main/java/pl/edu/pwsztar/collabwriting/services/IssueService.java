@@ -9,6 +9,7 @@ import pl.edu.pwsztar.collabwriting.repositories.IssueRepository;
 import pl.edu.pwsztar.collabwriting.repositories.StoryRepository;
 import pl.edu.pwsztar.collabwriting.repositories.UserRepository;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,5 +47,8 @@ public class IssueService {
     public List<IssueDto> getAllIssues(){
         return issueRepository.findAll().stream().map(IssueDto::new).collect(Collectors.toList());
     }
-
+    public List<IssueDto> getByStoryId(Long id){
+        return issueRepository.getAllByStory(storyRepository.findById(id).orElseThrow(EntityNotFoundException::new))
+                .stream().map(IssueDto::new).collect(Collectors.toList());
+    }
 }

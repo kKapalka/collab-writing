@@ -23,4 +23,9 @@ public class CommentController {
     public List<CommentDto> getAll(){
         return commentService.getAllComments();
     }
+
+    @GetMapping("/story/{id}")
+    public List<CommentDto> getByStoryId(@PathVariable Long id){
+        return commentService.getByStoryId(id);
+    }
 }

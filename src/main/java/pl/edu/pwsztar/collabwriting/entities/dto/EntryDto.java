@@ -12,7 +12,7 @@ public class EntryDto {
     private String entryText;
 
     public EntryDto(Entry entry){
-        this.entryId=entry.getEntryId();
+        this.entryId=entry.getId();
         this.authorName=entry.getAuthor().getLogin();
         this.storyTitle=entry.getStory().getTitle();
         this.entryText=entry.getEntryText();

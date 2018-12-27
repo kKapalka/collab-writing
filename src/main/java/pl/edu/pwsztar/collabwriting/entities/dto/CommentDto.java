@@ -13,7 +13,7 @@ public class CommentDto {
     private String commentTime;
 
     public CommentDto(Comment comment){
-        this.commentId=comment.getCommentId();
+        this.commentId=comment.getId();
         this.authorName=comment.getAuthor()!=null ? comment.getAuthor().getLogin() : null;
         this.storyTitle=comment.getStory()!=null ? comment.getStory().getTitle() : null;
         this.commentText=comment.getCommentText();
