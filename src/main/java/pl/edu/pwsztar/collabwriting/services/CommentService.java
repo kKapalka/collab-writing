@@ -34,9 +34,6 @@ public class CommentService {
     private StoryRepository storyRepository;
 
     @Autowired
-    private WriterRepository writerRepository;
-
-    @Autowired
     private WriterService writerService;
 
     public CommentDto save(CommentDto dto){
