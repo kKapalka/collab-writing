@@ -1,5 +1,6 @@
 package pl.edu.pwsztar.collabwriting.entities.dto;
 
+import lombok.Builder;
 import lombok.Data;
 import pl.edu.pwsztar.collabwriting.entities.Writer;
 
@@ -7,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
+@Builder
 public class WriterDto {
 
     private Long writerId;
@@ -15,10 +17,11 @@ public class WriterDto {
 
     private List<String> writerRoleList;
 
-    public WriterDto(Writer writer){
-        this.writerId=writer.getId();
-        this.userName=writer.getUser().getLogin();
-        this.storyTitle=writer.getStory().getTitle();
-        this.writerRoleList=writer.getWriterRoles().stream().map(Enum::name).collect(Collectors.toList());
+    public static WriterDto fromEntity(Writer writer){
+        return WriterDto.builder()
+                .writerId(writer.getId())
+                .userName(writer.getUser().getLogin())
+                .storyTitle(writer.getStory().getTitle())
+                .writerRoleList(writer.getWriterRoles().stream().map(Enum::name).collect(Collectors.toList())).build();
     }
 }

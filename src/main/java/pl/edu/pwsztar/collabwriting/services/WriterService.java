@@ -30,7 +30,7 @@ public class WriterService {
 
     public WriterDto save(WriterDto dto){
         Writer writer = updateWriter(dto);
-        return new WriterDto(writerRepository.save(writer));
+        return WriterDto.fromEntity(writerRepository.save(writer));
     }
     public Writer updateWriter(WriterDto dto){
         Writer writer = new Writer();
@@ -44,15 +44,15 @@ public class WriterService {
     }
 
     public List<WriterDto> getAllWriters(){
-        return writerRepository.findAll().stream().map(WriterDto::new).collect(Collectors.toList());
+        return writerRepository.findAll().stream().map(WriterDto::fromEntity).collect(Collectors.toList());
     }
     public List<WriterDto> getByStoryId(Long id){
         return writerRepository.getAllByStory(storyRepository.findById(id).orElseThrow(EntityNotFoundException::new))
-                .stream().map(WriterDto::new).collect(Collectors.toList());
+                .stream().map(WriterDto::fromEntity).collect(Collectors.toList());
     }
     public boolean checkIfUserIsModeratorForStory(String username, Story story){
         return writerRepository.getAllByStoryAndWriterRolesIsContaining
-                (story,"MODERATOR").stream().map(writer->writer.getUser().getLogin())
+                (story,WriterRole.MODERATOR).stream().map(writer->writer.getUser().getLogin())
                 .collect(Collectors.toList()).contains(username);
     }
     public void attemptApplyRole(User user, Story story, WriterRole role){

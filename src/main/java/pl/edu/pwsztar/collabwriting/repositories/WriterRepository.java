@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import pl.edu.pwsztar.collabwriting.entities.Story;
 import pl.edu.pwsztar.collabwriting.entities.User;
 import pl.edu.pwsztar.collabwriting.entities.Writer;
+import pl.edu.pwsztar.collabwriting.entities.enums.WriterRole;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public interface WriterRepository extends JpaRepository<Writer,Long> {
 
     List<Writer> getAllByStory(Story story);
 
-    List<Writer> getAllByStoryAndWriterRolesIsContaining(Story story, String role);
+    List<Writer> getAllByStoryAndWriterRolesIsContaining(Story story, WriterRole role);
 
     List<Writer> getAllByStoryAndUser(Story story, User user);
 }
