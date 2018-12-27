@@ -2,6 +2,8 @@ package pl.edu.pwsztar.collabwriting.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.edu.pwsztar.collabwriting.entities.base.StoryChildEntity;
+import pl.edu.pwsztar.collabwriting.entities.enums.WriterRole;
 
 import javax.persistence.*;
 import java.util.List;
@@ -10,23 +12,14 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Table(name="WRITERS")
-public class Writer {
+public class Writer extends StoryChildEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="WRITER_ID")
-    private Long writerId;
-
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="USER_ID")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name="STORY_ID")
-    private Story story;
-
     @ElementCollection
-    @Column(name="WRITER_ROLE")
+    @Column(name="ROLE")
     @Enumerated(EnumType.STRING)
     private List<WriterRole> writerRoles;
 

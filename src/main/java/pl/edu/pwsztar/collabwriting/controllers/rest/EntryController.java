@@ -23,4 +23,9 @@ public class EntryController {
     public List<EntryDto> getAll(){
         return entryService.getAllEntries();
     }
+
+    @GetMapping("/story/{id}")
+    public List<EntryDto> getByStoryId(@PathVariable Long id){
+        return entryService.getByStoryId(id);
+    }
 }

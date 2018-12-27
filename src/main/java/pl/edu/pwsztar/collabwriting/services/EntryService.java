@@ -9,6 +9,7 @@ import pl.edu.pwsztar.collabwriting.repositories.EntryRepository;
 import pl.edu.pwsztar.collabwriting.repositories.StoryRepository;
 import pl.edu.pwsztar.collabwriting.repositories.UserRepository;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,13 +35,16 @@ public class EntryService {
             entry = entryRepository.findById(dto.getEntryId()).get();
         }
         entry.setEntryText(dto.getEntryText());
-        entry.setAuthor(userRepository.findById(dto.getAuthorId()).get());
-        entry.setStory(storyRepository.findById(dto.getStoryId()).get());
+        entry.setAuthor(userRepository.findByLogin(dto.getAuthorName()).get());
+        entry.setStory(storyRepository.getStoryByTitle(dto.getStoryTitle()).get());
         return entry;
     }
 
     public List<EntryDto> getAllEntries(){
         return entryRepository.findAll().stream().map(EntryDto::new).collect(Collectors.toList());
     }
-
+    public List<EntryDto> getByStoryId(Long id){
+        return entryRepository.getAllByStory(storyRepository.findById(id).orElseThrow(EntityNotFoundException::new))
+                .stream().map(EntryDto::new).collect(Collectors.toList());
+    }
 }

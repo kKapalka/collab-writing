@@ -43,7 +43,7 @@ public class UserPrinciple implements UserDetails {
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 
         return new UserPrinciple(
-                user.getUserId(),
+                user.getId(),
                 user.getLogin(),
                 user.getLogin(),
                 user.getEmail(),

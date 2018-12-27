@@ -16,8 +16,12 @@ public class StoryController {
     private StoryService storyService;
 
     @PostMapping("/save")
-    public StoryDto save(@RequestBody StoryDto dto){
-        return storyService.save(dto);
+    public StoryDto save(@RequestBody StoryDto dto, @RequestHeader(value="user", required = false) String user){
+        if(user!=null){
+            return storyService.create(dto,user);
+        } else{
+            return storyService.save(dto);
+        }
     }
 
     @GetMapping("/all")

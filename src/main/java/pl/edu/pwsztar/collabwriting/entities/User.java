@@ -1,7 +1,8 @@
 package pl.edu.pwsztar.collabwriting.entities;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import pl.edu.pwsztar.collabwriting.entities.base.BaseEntity;
+import pl.edu.pwsztar.collabwriting.entities.enums.UserRole;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,12 +10,7 @@ import java.util.List;
 @Entity
 @Data
 @Table(name="USERS")
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="USER_ID")
-    private Long userId;
+public class User extends BaseEntity {
 
     @Column(name="LOGIN")
     private String login;
@@ -40,7 +36,7 @@ public class User {
         this.email=user.getEmail();
         this.active=user.getActive();
         this.roles=user.getRoles();
-        this.userId=user.getUserId();
+        this.setId(user.getId());
     }
     public User(){
 
