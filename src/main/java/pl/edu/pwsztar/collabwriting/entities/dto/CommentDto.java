@@ -7,9 +7,9 @@ import pl.edu.pwsztar.collabwriting.entities.Comment;
 public class CommentDto {
 
     private Long commentId;
-    private String authorName;
-    private String storyTitle;
-    private String commentText;
+    private String authorName; //wymagane
+    private String storyTitle; // wymagane
+    private String commentText; //wymagane
     private String commentTime;
 
     public CommentDto(Comment comment){

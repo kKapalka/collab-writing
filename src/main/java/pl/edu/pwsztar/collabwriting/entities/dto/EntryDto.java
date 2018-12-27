@@ -7,9 +7,9 @@ import pl.edu.pwsztar.collabwriting.entities.Entry;
 public class EntryDto {
 
     private Long entryId;
-    private String authorName;
-    private String storyTitle;
-    private String entryText;
+    private String authorName; //wymagane
+    private String storyTitle; //wymagane
+    private String entryText; //wymagane
 
     public EntryDto(Entry entry){
         this.entryId=entry.getId();

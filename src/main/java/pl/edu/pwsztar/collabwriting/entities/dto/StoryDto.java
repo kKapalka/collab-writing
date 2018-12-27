@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class StoryDto {
 
     public Long storyId;
-    public String title;
+    public String title; //wymagane
     public List<Long> authorIdList;
     public List<Long> commentIdList;
     public List<Long> issueIdList;

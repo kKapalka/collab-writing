@@ -7,12 +7,12 @@ import pl.edu.pwsztar.collabwriting.entities.Issue;
 public class IssueDto {
 
     private Long issueId;
-    private String authorName;
-    private String storyTitle;
-    private String issueTitle;
-    private String issueStatus;
-    private String description;
-    private String assignedAuthorName;
+    private String authorName; //wymagane
+    private String storyTitle; //wymagane
+    private String issueTitle; //wymagane
+    private String issueStatus; //wymagane
+    private String description; //wymagane
+    private String assignedAuthorName; //wymagane
 
     public IssueDto(Issue issue){
         this.issueId=issue.getId();

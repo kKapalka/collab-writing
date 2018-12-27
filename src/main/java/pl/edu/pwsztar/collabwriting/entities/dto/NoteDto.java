@@ -7,9 +7,9 @@ import pl.edu.pwsztar.collabwriting.entities.Note;
 public class NoteDto {
 
     private Long noteId;
-    private String authorName;
-    private String storyTitle;
-    private String noteData;
+    private String authorName; //wymagane
+    private String storyTitle; //wymagane
+    private String noteData; //wymagane
 
     public NoteDto(Note note){
         this.noteId=note.getId();

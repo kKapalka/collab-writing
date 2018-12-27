@@ -16,13 +16,13 @@ import java.util.stream.Collectors;
 public class UserDto {
 
     private Long userId;
-    private String login;
-    private String password;
-    private String matchingPassword;
+    private String login; //wymagane
+    private String password; //wymagane
+    private String matchingPassword; //wymagane
     @ValidEmail
     @NonNull
     @NotEmpty
-    private String email;
+    private String email; //wymagane
     private List<String> userRoleList;
 
     public UserDto(User user){

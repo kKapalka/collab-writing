@@ -9,11 +9,13 @@ import java.util.stream.Collectors;
 
 @Data
 @Builder
+//Z reguły to nie będzie używane, bo Writerzy będą dodawani
+//  automatycznie podczas tworzenia lub zatwierdzanie encji
 public class WriterDto {
 
     private Long writerId;
-    private String userName;
-    private String storyTitle;
+    private String userName; //wymagane
+    private String storyTitle; //wymagane
 
     private List<String> writerRoleList;
 
