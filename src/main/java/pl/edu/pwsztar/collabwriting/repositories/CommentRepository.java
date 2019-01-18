@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface CommentRepository extends JpaRepository<Comment,Long> {
     List<Comment> getAllByStory(Story story);
+
+    List<Comment> getAllByStoryAndApproved(Story story, Boolean approved);
 }

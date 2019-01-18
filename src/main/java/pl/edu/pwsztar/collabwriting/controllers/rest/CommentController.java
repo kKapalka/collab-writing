@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/comment")
+@CrossOrigin
 public class CommentController {
 
     @Autowired
@@ -26,8 +27,8 @@ public class CommentController {
     }
 
     @GetMapping("/story/{id}")
-    public List<CommentDto> getByStoryId(@PathVariable Long id){
-        return commentService.getByStoryId(id);
+    public List<CommentDto> getByStoryId(@PathVariable Long id,@RequestHeader String user){
+        return commentService.getByStoryId(id,user);
     }
     @PostMapping("/{id}/approve")
     public ResponseEntity<?> approve(@PathVariable Long id, @RequestHeader("user") String username){

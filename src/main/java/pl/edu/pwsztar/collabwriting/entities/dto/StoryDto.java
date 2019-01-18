@@ -2,6 +2,7 @@ package pl.edu.pwsztar.collabwriting.entities.dto;
 
 import lombok.Data;
 import pl.edu.pwsztar.collabwriting.entities.*;
+import pl.edu.pwsztar.collabwriting.entities.base.StoryContentEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,19 +23,19 @@ public class StoryDto {
         this.storyId=story.getId();
         this.title=story.getTitle();
         this.authorIdList=story.getWriters()!=null ?
-                story.getWriters().stream().map(Writer::getId).collect(Collectors.toList())
+                story.getWriters().stream().filter(writer -> writer.getWriterRoles()!=null).map(Writer::getId).collect(Collectors.toList())
                 : new ArrayList<>();
         this.issueIdList=story.getIssues()!=null?
-                story.getIssues().stream().map(Issue::getId).collect(Collectors.toList())
+                story.getIssues().stream().filter(Issue::getApproved).map(Issue::getId).collect(Collectors.toList())
                 : new ArrayList<>();
         this.commentIdList=story.getComments()!=null?
-                story.getComments().stream().map(Comment::getId).collect(Collectors.toList())
+                story.getComments().stream().filter(Comment::getApproved).map(Comment::getId).collect(Collectors.toList())
                 : new ArrayList<>();
         this.entryIdList=story.getEntries()!=null?
-                story.getEntries().stream().map(Entry::getId).collect(Collectors.toList())
+                story.getEntries().stream().filter(Entry::getApproved).map(Entry::getId).collect(Collectors.toList())
                 : new ArrayList<>();
         this.noteIdList=story.getNotes()!=null?
-                story.getNotes().stream().map(Note::getId).collect(Collectors.toList())
+                story.getNotes().stream().filter(Note::getApproved).map(Note::getId).collect(Collectors.toList())
                 : new ArrayList<>();
     }
 

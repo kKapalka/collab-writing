@@ -13,4 +13,7 @@ public interface NoteRepository extends JpaRepository<Note,Long> {
 
     List<Note> getAllByStory(Story story);
 
+    List<Note> getAllByStoryAndApproved(Story story, Boolean approved);
+
+
 }

@@ -1,0 +1,25 @@
+<nav class="container col-sm-9">
+    <div class="row">
+        <ul class="nav nav-pills nav-fill justify-content-center">
+            <li class="nav-item">
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" routerLink="/blog">Opowiadania</a>
+            </li>
+            <span *ngIf="isLogged()">
+                <li class="nav-item">
+                    <button (click)="logOut()" class="dropdown-item">Wyloguj</button>
+                </li>
+            </span>
+            <span *ngIf="!isLogged()">
+                <li class="nav-item">
+                    <button (click)="logIn()" class="dropdown-item">Zaloguj</button>
+                </li>
+                <li class="nav-item">
+                    <button (click)="register()" class="dropdown-item">Zarejestruj sie</button>
+                </li>
+            </span>
+
+        </ul>
+    </div>
+</nav>

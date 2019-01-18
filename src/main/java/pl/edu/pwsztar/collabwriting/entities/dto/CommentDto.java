@@ -11,6 +11,7 @@ public class CommentDto {
     private String storyTitle; // wymagane
     private String commentText; //wymagane
     private String commentTime;
+    private boolean approved;
 
     public CommentDto(Comment comment){
         this.commentId=comment.getId();
@@ -18,5 +19,6 @@ public class CommentDto {
         this.storyTitle=comment.getStory()!=null ? comment.getStory().getTitle() : null;
         this.commentText=comment.getCommentText();
         this.commentTime=comment.getCommentTime().toString();
+        this.approved=comment.getApproved();
     }
 }

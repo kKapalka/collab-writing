@@ -55,8 +55,17 @@ public class CommentService {
     public List<CommentDto> getAllComments(){
         return commentRepository.findAll().stream().map(CommentDto::new).collect(Collectors.toList());
     }
-    public List<CommentDto> getByStoryId(Long id){
-        return commentRepository.getAllByStory(storyRepository.findById(id).orElseThrow(EntityNotFoundException::new))
+    public List<CommentDto> getByStoryId(Long id, String username){
+        System.out.println(username);
+        Story story = storyRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        List<Writer> writersWithUsername = story.getWriters().stream().filter(writer->writer.getUser().getLogin().equals(username)).collect(Collectors.toList());
+        if(writersWithUsername.size()>0){
+            if(writersWithUsername.stream().filter(writer->writer.getWriterRoles().contains(WriterRole.MODERATOR)).collect(Collectors.toList()).size()>0){
+                return commentRepository.getAllByStory(story).stream().map(CommentDto::new).collect(Collectors.toList());
+            }
+        }
+        System.out.println(commentRepository.getAllByStoryAndApproved(story,true));
+        return commentRepository.getAllByStoryAndApproved(story,true)
                 .stream().map(CommentDto::new).collect(Collectors.toList());
     }
     public ResponseEntity<?> approveByIdWithCredentials(Long id, String username){

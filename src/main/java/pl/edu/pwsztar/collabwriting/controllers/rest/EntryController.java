@@ -10,6 +10,7 @@ import java.util.List;
 
 @RequestMapping("/entry")
 @RestController
+@CrossOrigin
 public class EntryController {
 
     @Autowired

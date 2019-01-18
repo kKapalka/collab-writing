@@ -1,0 +1,23 @@
+ul {
+  float: left;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+li {
+  display: block;
+  float: left;
+  text-align: center;
+  padding: 10px 15px;
+  background-color: transparent;
+}
+
+li > a{
+  background-color: #f44336 !important;
+}
+
+.btn{
+  background-color: #f44336 !important;
+}

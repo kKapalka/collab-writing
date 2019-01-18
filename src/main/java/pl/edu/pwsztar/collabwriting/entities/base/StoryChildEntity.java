@@ -3,7 +3,6 @@ package pl.edu.pwsztar.collabwriting.entities.base;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.edu.pwsztar.collabwriting.entities.Story;
-import pl.edu.pwsztar.collabwriting.entities.User;
 
 import javax.persistence.*;
 

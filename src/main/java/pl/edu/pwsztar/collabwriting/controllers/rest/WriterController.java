@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/writer")
+@CrossOrigin
 public class WriterController {
 
     @Autowired

@@ -10,4 +10,7 @@ import java.util.List;
 @Repository
 public interface EntryRepository extends JpaRepository<Entry,Long> {
     List<Entry> getAllByStory(Story story);
+
+    List<Entry> getAllByStoryAndApproved(Story story, Boolean approved);
+
 }

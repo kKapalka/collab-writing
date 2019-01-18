@@ -11,6 +11,7 @@ import java.util.List;
 
 @RequestMapping("/story")
 @RestController
+@CrossOrigin
 public class StoryController {
 
     @Autowired

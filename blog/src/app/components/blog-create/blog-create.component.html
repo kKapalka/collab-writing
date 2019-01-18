@@ -1,0 +1,17 @@
+<div class="content">
+  <form method="post">
+    <fieldset>
+      <div class="container-fluid">
+        <legend>Uzupełnij dane</legend>
+
+        <div class="form-group">
+          <label>Tytuł: </label>
+          <input [(ngModel)]="item.title" name="title" placeholder="Podaj tytuł">
+        </div>
+
+        <button type="reset">Wyczyść</button>
+        <button type="submit" (click)="setData(item)">Wyślij</button>
+      </div>
+    </fieldset>
+  </form>
+</div>
