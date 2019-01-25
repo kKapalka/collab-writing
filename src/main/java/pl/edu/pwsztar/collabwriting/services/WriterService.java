@@ -32,6 +32,10 @@ public class WriterService {
         Writer writer = updateWriter(dto);
         return WriterDto.fromEntity(writerRepository.save(writer));
     }
+    public Writer saveAndGetEntity(WriterDto dto){
+        Writer writer = updateWriter(dto);
+        return writerRepository.save(writer);
+    }
     public Writer updateWriter(WriterDto dto){
         Writer writer = new Writer();
         if(dto.getWriterId()!=null){

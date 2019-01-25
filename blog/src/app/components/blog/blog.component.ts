@@ -12,17 +12,19 @@ export class BlogComponent implements OnInit {
   items: any[];
 
   @Input() filterText: string;
+  @Input() currentUsername:string;
 
   constructor(private dataService: DataServiceService, private router: Router, private route: ActivatedRoute) {
-  }
-
-  ngOnInit() {
     this.dataService.getAll().subscribe(result => {
       this.items = result;
     } );
     this.route.queryParams.subscribe(params => {
       this.filterText = params['title'];
     } );
+  }
+
+  ngOnInit() {
+
   }
 
 }

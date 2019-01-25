@@ -10,12 +10,14 @@ public class NoteDto {
     private String authorName; //wymagane
     private String storyTitle; //wymagane
     private String noteData; //wymagane
+    private Boolean approved;
 
     public NoteDto(Note note){
         this.noteId=note.getId();
         this.authorName=note.getAuthor().getLogin();
         this.storyTitle=note.getStory().getTitle();
         this.noteData=note.getNoteData();
+        this.approved=note.getApproved();
     }
 
 }

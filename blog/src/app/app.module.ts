@@ -24,11 +24,18 @@ import {AdminGuard} from './services/admin-guard.guard';
 import {LoginComponent} from './components/login/login.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './services/auth/auth.interceptor';
-import {AuthService} from "./services/auth.service";
+import {AuthService} from './services/auth.service';
 import {SignupComponent} from './components/signup/signup.component';
 import {BlogStoryAddComponent} from './components/blog-story-add/blog-story-add.component';
 import {BlogCommentAddComponent} from './components/blog-comment-add/blog-comment-add.component';
-import {BlogItemCommentDetailsComponent} from "./components/blog-item-comment-details/blog-item-comment-details.component";
+import {BlogItemCommentDetailsComponent} from './components/blog-item-comment-details/blog-item-comment-details.component';
+import {BlogItemEntryDetailsComponent} from './components/blog-item-entry-details/blog-item-entry-details.component';
+import {BlogItemNoteDetailsComponent} from './components/blog-item-note-details/blog-item-note-details.component';
+import {BlogItemIssueDetailsComponent} from './components/blog-item-issue-details/blog-item-issue-details.component';
+import { BlogItemIssueAddComponent } from './components/blog-item-issue-add/blog-item-issue-add.component';
+import { BlogItemNoteAddComponent } from './components/blog-item-note-add/blog-item-note-add.component';
+import { BlogItemEntryAddComponent } from './components/blog-item-entry-add/blog-item-entry-add.component';
+
 
 // import { AdminProfileComponent } from './components/';
 
@@ -65,6 +72,18 @@ const appRoutes: Routes = [
         component: BlogCommentAddComponent
     },
     {
+        path: 'blog/issue/create',
+        component: BlogItemIssueAddComponent
+    },
+    {
+        path: 'blog/note/create',
+        component: BlogItemNoteAddComponent
+    },
+    {
+      path: 'blog/entry/create',
+      component: BlogItemEntryAddComponent
+    },
+    {
         path: 'login',
         component: LoginComponent
     },
@@ -73,7 +92,7 @@ const appRoutes: Routes = [
         component: SignupComponent
     },
 
-]
+];
 
 @NgModule({
     declarations: [
@@ -97,7 +116,13 @@ const appRoutes: Routes = [
         SignupComponent,
         BlogStoryAddComponent,
         BlogCommentAddComponent,
-        BlogItemCommentDetailsComponent
+        BlogItemCommentDetailsComponent,
+        BlogItemEntryDetailsComponent,
+        BlogItemNoteDetailsComponent,
+        BlogItemIssueDetailsComponent,
+        BlogItemIssueAddComponent,
+        BlogItemNoteAddComponent,
+        BlogItemEntryAddComponent
     ],
     imports: [
         BrowserModule,

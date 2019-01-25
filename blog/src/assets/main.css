@@ -1,0 +1,13 @@
+.navbar__image {
+    width: 100%;
+    height: auto;
+    max-height: 140px;
+}
+
+.navbar__button-stories {
+    max-width: 150px;
+}
+
+.main__card {
+    margin: 0 auto;
+}

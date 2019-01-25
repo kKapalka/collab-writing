@@ -1,0 +1,12 @@
+<div style="outline: 1px solid gray; ">
+  <div>
+    <span>{{title}}</span>
+    <br>
+    <span>{{id}} | {{username}} | {{status}}</span>
+    <br>
+    <span>Przypisane do: {{assignedUsername}}</span>
+    <br>
+    <span>{{text}}</span>
+    <button (click)="approve()" *ngIf="!approved"style="float: right;" >Zatwierdź</button>
+  </div>
+</div>

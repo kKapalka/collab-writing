@@ -1,0 +1,15 @@
+<div class="content">
+  <form method="post">
+    <fieldset>
+      <div class="container text-center dynamic-container">
+        <legend>Uzupełnij dane</legend>
+        <div class="form-group">
+          <label>Opis: </label>
+          <textarea [(ngModel)]="item.noteData" name="title" placeholder="Wpisz notatke"> </textarea>
+        </div>
+        <button type="reset">Wyczyść</button>
+        <button type="submit" (click)="setData(item)">Wyślij</button>
+      </div>
+    </fieldset>
+  </form>
+</div>

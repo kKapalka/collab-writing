@@ -3,6 +3,7 @@ package pl.edu.pwsztar.collabwriting.entities.dto;
 import lombok.Data;
 import pl.edu.pwsztar.collabwriting.entities.*;
 import pl.edu.pwsztar.collabwriting.entities.base.StoryContentEntity;
+import pl.edu.pwsztar.collabwriting.entities.enums.WriterRole;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,7 @@ public class StoryDto {
     public List<Long> issueIdList;
     public List<Long> entryIdList;
     public List<Long> noteIdList;
+    public String moderatorName;
 
     public StoryDto(Story story){
         this.storyId=story.getId();
@@ -37,6 +39,8 @@ public class StoryDto {
         this.noteIdList=story.getNotes()!=null?
                 story.getNotes().stream().filter(Note::getApproved).map(Note::getId).collect(Collectors.toList())
                 : new ArrayList<>();
+        this.moderatorName=story.getWriters().stream()
+                .filter(writer->writer.getWriterRoles().contains(WriterRole.MODERATOR)).collect(Collectors.toList()).get(0).getUser().getLogin();
     }
 
 }

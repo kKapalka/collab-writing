@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DataServiceService} from '../../services/data-service.service';
-
+import {Location} from '@angular/common';
 @Component({
   selector: 'app-blog-create',
   templateUrl: './blog-create.component.html',
@@ -12,7 +12,7 @@ export class BlogCreateComponent implements OnInit {
     title: '',
   };
 
-  constructor(private data: DataServiceService) {
+  constructor(private data: DataServiceService, private _location: Location) {
   }
 
   ngOnInit() {
@@ -21,5 +21,6 @@ export class BlogCreateComponent implements OnInit {
 
   setData(item){
     this.data.addPost(item,localStorage.getItem('username')).subscribe();
+    this._location.back();
   }
 }

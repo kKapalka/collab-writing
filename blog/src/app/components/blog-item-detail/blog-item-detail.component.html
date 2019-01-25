@@ -1,20 +1,51 @@
-<div class="container">
-  <div class="col-sm-6 mx-auto d-block mt-5">
-      <button type="button" class="btn btn-primary" (click)="goToCommentCreate(item.title)" *ngIf="checkStorageForUsername()">Dodaj Komentarz</button>
-    <div class="card" style="width: 32rem">
+<div class="container" style="padding-top:150px">
+
+
+  <div class="container">
+    <div style="flex-direction: row; padding-left:150px">
+      <button type="button" class="btn btn-primary dynamic-hover"  style="margin-top: -88px; background-color: saddlebrown; border: 2px solid saddlebrown;" (click)="goToCommentCreate(item.title)" *ngIf="checkStorageForUsername()">Dodaj Komentarz</button>
+      <button type="button" class="btn btn-primary"  style="margin-top: -88px; margin-left: 3px; background-color: saddlebrown; border: 2px solid saddlebrown;" (click)="goToIssueCreate(item.title)" *ngIf="checkStorageForUsername()">Dodaj Issue</button>
+      <button type="button" class="btn btn-primary"  style="margin-top: -88px; margin-left: 3px; background-color: saddlebrown; border: 2px solid saddlebrown;" (click)="goToNoteCreate(item.title)" *ngIf="checkStorageForUsername()">Dodaj Notatke</button>
+      <button type="button" class="btn btn-primary"  style="margin-top: -88px; margin-left: 3px; background-color: saddlebrown; border: 2px solid saddlebrown;" (click)="goToEntryCreate(item.title)" *ngIf="checkStorageForUsername()">Dodaj Wpis</button>
+    </div>
+    <div class="main__card card" style="width: 32rem">
       <div class="card-body">
         <p class="card-text">
 		  <app-blog-item-text [text]="item.title"></app-blog-item-text>
 		</p>
       </div>
         <div>
-            <span>komentarze</span>
+            <span style="margin-left: 7%;">wpisy do opowiadania</span>
             <ul style="list-style-type:none">
-                <li *ngFor="let item of comments">
-                    <app-blog-item-comment-details [text]="item.commentText" [id]="item.commentId" [username]="item.authorName" [approved]="item.approved"></app-blog-item-comment-details>
+                <li *ngFor="let entry of entries">
+                    <app-blog-item-entry-details *ngIf="entry.approved || (item.moderatorName === currentUser() && !entry.approved)" [text]="entry.entryText" [id]="entry.entryId" [username]="entry.authorName" [approved]="entry.approved"></app-blog-item-entry-details>
                 </li>
             </ul>
         </div>
+        <span style="margin-left: 7%;">komentarze</span>
+        <ul style="list-style-type:none">
+            <li *ngFor="let comment of comments">
+                <app-blog-item-comment-details *ngIf="comment.approved || (item.moderatorName === currentUser() && !comment.approved)" [text]="comment.commentText" [id]="comment.commentId" [username]="comment.authorName" [approved]="comment.approved"></app-blog-item-comment-details>
+            </li>
+        </ul>
     </div>
   </div>
+    <div class="problems col-sm-3 mx-auto d-block mt-3 pull-left" style="position: absolute;top: 199.5px;left: 0% !important;max-width: 19%; left: -2%;" *ngIf="checkStorageForUsername()">
+        <span style="margin-left: 11.5%;">problemy z opowiadaniem</span>
+        <ul style="list-style-type:none">
+            <li *ngFor="let issue of issues" class="hotfix">
+                <app-blog-item-issue-details *ngIf="issue.approved || (item.moderatorName === currentUser() && !issue.approved)" [title]="issue.issueTitle" [approved]="issue.approved" [assignedUsername]="issue.assignedAuthorName" [text]="issue.description" [id]="issue.issueId" [username]="issue.authorName" [status]="issue.issueStatus"></app-blog-item-issue-details>
+            </li>
+        </ul>
+    </div>
+    <div class="col-sm-3 mx-auto d-block mt-3 pull-right" style="position: absolute;top: 193px;right: 0%;" *ngIf="checkStorageForUsername()">
+      {{currentUser()}}
+        <span style="margin-left: 8.4%">notatki</span>
+        <ul style="list-style-type:none">
+            <li *ngFor="let note of notes" class="hotfix">
+                <app-blog-item-note-details *ngIf="note.approved || (item.moderatorName === currentUser() && !note.approved)" [text]="note.noteData" [id]="note.noteId" [username]="note.authorName" [approved]="note.approved"></app-blog-item-note-details>
+            </li>
+        </ul>
+    </div>
 </div>
+

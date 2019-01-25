@@ -13,6 +13,7 @@ public class IssueDto {
     private String issueStatus; //wymagane
     private String description; //wymagane
     private String assignedAuthorName; //wymagane
+    private Boolean approved;
 
     public IssueDto(Issue issue){
         this.issueId=issue.getId();
@@ -22,6 +23,7 @@ public class IssueDto {
         this.issueStatus=issue.getIssueStatus().name();
         this.description=issue.getDescription();
         this.assignedAuthorName=issue.getAssigned().getLogin();
+        this.approved=issue.getApproved();
     }
 
 }

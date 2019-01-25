@@ -14,6 +14,9 @@ export class BlogHomeComponent implements OnInit {
 
   ngOnInit() {
   }
+  getUsername(){
+    return localStorage.getItem('username');
+  }
   checkStorageForUsername(){
     return Boolean(localStorage.getItem('username'));
   }
